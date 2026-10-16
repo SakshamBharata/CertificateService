@@ -1,0 +1,99 @@
+@if (certificate) {
+  <main class="verification-page">
+    <section class="verification-card" aria-labelledby="verification-title">
+      <header class="brand">
+        <div class="brand-mark" aria-hidden="true">SB</div>
+        <div class="brand-copy">
+          <p class="eyebrow">Official digital registry</p>
+          <h1>SAKSHAM BHARAT</h1>
+          <p class="brand-subtitle">Certificate Verification Portal</p>
+        </div>
+      </header>
+
+      <div class="official-ribbon">
+        <span class="ribbon-seal" aria-hidden="true">✓</span>
+        <span>Verified record</span>
+      </div>
+
+      <section class="status-section">
+        <div class="verified-icon" aria-hidden="true">✓</div>
+        <p class="status-label">Verification successful</p>
+        <h2 id="verification-title">Certificate is authentic</h2>
+        <p class="verification-message">
+          This certificate has been verified against the official Saksham Bharat
+          registry and is valid as of today.
+        </p>
+      </section>
+
+      <section class="certificate-details" aria-label="Certificate details">
+        <div class="detail">
+          <span class="detail-label">Certificate holder</span>
+          <strong class="detail-value">{{ certificate.name }}</strong>
+        </div>
+        <div class="detail">
+          <span class="detail-label">Issuing organization</span>
+          <strong class="detail-value">{{ certificate.teamName }}</strong>
+        </div>
+        <div class="detail">
+          <span class="detail-label">Date of issue</span>
+          <strong class="detail-value">{{ certificate.issuedDate }}</strong>
+        </div>
+        <div class="detail">
+          <span class="detail-label">Certificate ID</span>
+          <strong class="detail-value certificate-id">{{ certificate.certificateId }}</strong>
+        </div>
+      </section>
+
+      <div class="valid-badge">
+        <span aria-hidden="true">✓</span>
+        Valid certificate
+      </div>
+
+      <section class="qr-section" aria-labelledby="qr-title">
+        <div class="qr-heading">
+          <span class="qr-kicker">For independent verification</span>
+          <h3 id="qr-title">Scan this certificate</h3>
+        </div>
+        <div class="qr-box">
+          <qrcode
+            [qrdata]="qrUrl"
+            [width]="180"
+            [errorCorrectionLevel]="'M'">
+          </qrcode>
+        </div>
+        <p>
+          Scan the QR code to open this record directly on the official
+          Saksham Bharat verification portal.
+        </p>
+      </section>
+
+      <footer class="verification-footer">
+        <span>Digitally verifiable record</span>
+        <span class="footer-dot" aria-hidden="true">•</span>
+        <span>sakshambharat.org</span>
+      </footer>
+    </section>
+  </main>
+}
+
+@if (notFound) {
+  <main class="verification-page">
+    <section class="verification-card not-found" aria-labelledby="not-found-title">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">SB</div>
+        <div class="brand-copy">
+          <p class="eyebrow">Official digital registry</p>
+          <h1>SAKSHAM BHARAT</h1>
+        </div>
+      </div>
+      <div class="error-icon" aria-hidden="true">!</div>
+      <p class="status-label error-label">Unable to verify</p>
+      <h2 id="not-found-title">Certificate not found</h2>
+      <p class="not-found-message">
+        The certificate ID is invalid, expired, or is not present in the Saksham
+        Bharat registry. Please check the QR code and try again.
+      </p>
+      <div class="not-found-badge">Invalid certificate ID</div>
+    </section>
+  </main>
+}
